@@ -24,6 +24,7 @@ public class Character_Motion : MonoBehaviour {
         // anim.SetInteger("AnimPar", 0); ----> Idle
         // anim.SetInteger("AnimPar", 1); ----> Move
         // anim.SetInteger("AnimPar", 2); ----> Attack
+        
 
         if (controller.isGrounded)
         {
@@ -31,9 +32,15 @@ public class Character_Motion : MonoBehaviour {
             moveDirection = transform.right * Input.GetAxis("Vertical") * speed; 
         }
 
-        float turn = Input.GetAxis("Horizontal");
-        transform.Rotate(0, turn * turnSpeed * Time.deltaTime,0);
-        controller.Move(moveDirection * Time.deltaTime);
+        if (Input.GetKey("w"))
+        {
+            anim.SetInteger("AnimPar", 1);
+            transform.Translate(Vector3.right * 1 * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            anim.SetInteger("AnimPar", 0);
+        }
         
        
         
